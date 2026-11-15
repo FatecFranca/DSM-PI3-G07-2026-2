@@ -1,0 +1,38 @@
+{
+  "name": "projeto-node-express",
+  "version": "1.0.0",
+  "description": "API Node.js/Express para agendamentos e chat, usando MongoDB",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node database/seed.js",
+    "db:sync-indexes": "node database/sync-indexes.js",
+    "test": "npm run test:smoke && npm run test:smoke:replset",
+    "test:smoke": "node scripts/smoke-test.js",
+    "test:smoke:replset": "node scripts/smoke-test.js --replset"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.11.4",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.3.0",
+    "nodemon": "^3.1.14",
+    "socket.io-client": "^4.8.4"
+  }
+}
