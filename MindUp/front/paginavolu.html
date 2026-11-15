@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B6B4B">
+    <title>Painel do Voluntário - MIND UP</title>
+    <link rel="stylesheet" href="./style/base.css">
+    <link rel="stylesheet" href="./style/painel.css">
+    <link rel="stylesheet" href="./style/paginavolu.css">
+    <script src="./JS/auth.js" defer></script>
+    <script src="./JS/menuDinamico.js" defer></script>
+    <script src="./JS/ui.js" defer></script>
+    <script src="./JS/routeGuard.js" defer></script>
+    <script src="./JS/voluDashboard.js" defer></script>
+    <script src="./JS/conversasVoluntario.js" defer></script>
+    <script src="./JS/criarDisponibilidade.js" defer></script>
+    <script src="./JS/agendamentosVoluntario.js" defer></script>
+    <script src="./JS/scriptVolu.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="header" role="banner">
+        <nav class="header-nav" aria-label="Principal">
+            <a class="logo" href="index.html" aria-label="MIND UP - Página inicial">
+                <span class="site-title">MIND UP</span>
+            </a>
+
+            <ul class="menu-links" id="menu-principal">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="paginavolu.html" class="active" aria-current="page">Painel</a></li>
+                <li><a href="#" class="tab-link" data-tab="agenda">Agenda</a></li>
+                <li><a href="#" class="tab-link" data-tab="disponibilidade">Disponibilidade</a></li>
+                <li><a href="chat.html">Chat</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button type="button" id="perfil-vol-btn" class="btn-perfil tab-link" data-tab="perfil" aria-label="Abrir meu perfil">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M4 21a8 8 0 0 1 16 0"/>
+                    </svg>
+                </button>
+                <button type="button" id="logout-btn" class="btn-logout" data-logout>Sair</button>
+            </div>
+
+            <button
+                type="button"
+                class="menu-toggle"
+                data-menu-toggle
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="menu-principal"></button>
+        </nav>
+    </header>
+
+    <main class="conteudo-dashboard" id="conteudo">
+        <div id="resumo" class="tab-pane active" role="tabpanel" aria-labelledby="tab-resumo">
+            <div class="resumo-grid">
+                <section class="secao-bemvindo" aria-labelledby="welcome-title">
+                    <div class="bemvindo-content">
+                        <span class="tag">Painel do voluntário</span>
+                        <h1 id="welcome-title">Olá, <span id="volunteerName">Voluntário</span>!</h1>
+                        <p>Obrigado por dedicar seu tempo para apoiar outras pessoas. Acompanhe suas conversas, horários e agendamentos em um só lugar.</p>
+
+                        <div class="bemvindo-acoes">
+                            <button type="button" class="btn-primary tab-link" data-tab="mensagens">
+                                Ver conversas
+                            </button>
+                            <button type="button" class="btn-secondary tab-link" data-tab="disponibilidade">
+                                Criar disponibilidade
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="resumo-lateral" aria-label="Resumo do voluntário">
+                    <article class="mini-card estatistica-card" aria-labelledby="stat-conversas-label">
+                        <span class="estatistica-icone" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H7l-4 3v-6.5A8.5 8.5 0 1 1 21 11.5Z"/>
+                                <path d="M8 10h8M8 14h5"/>
+                            </svg>
+                        </span>
+                        <div class="estatistica-info">
+                            <strong class="estatistica-label" id="stat-conversas-label">Conversas ativas</strong>
+                            <p id="stat-conversas" aria-live="polite">0</p>
+                        </div>
+                    </article>
+
+                    <article class="mini-card estatistica-card" aria-labelledby="stat-pedidos-label">
+                        <span class="estatistica-icone estatistica-icone--amarelo" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="5" width="18" height="16" rx="3"/>
+                                <path d="M8 3v4M16 3v4M3 10h18"/>
+                                <path d="M12 14v3l2 1"/>
+                            </svg>
+                        </span>
+                        <div class="estatistica-info">
+                            <strong class="estatistica-label" id="stat-pedidos-label">Pedidos pendentes</strong>
+                            <p id="stat-pedidos" aria-live="polite">0</p>
+                        </div>
+                    </article>
+
+                    <article class="mini-card resumo-dica">
+                        <h2>Antes de começar</h2>
+                        <p>Pratique escuta ativa e acolhedora. Se houver risco imediato, oriente a pessoa a procurar ajuda de emergência.</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <nav class="tabs-nav" role="tablist" aria-label="Seções do painel do voluntário">
+            <button type="button" class="tab-btn active" id="tab-resumo" data-tab="resumo" role="tab" aria-selected="true" aria-controls="resumo">Visão geral</button>
+            <button type="button" class="tab-btn" id="tab-agenda" data-tab="agenda" role="tab" aria-selected="false" aria-controls="agenda" tabindex="-1">Agenda</button>
+            <button type="button" class="tab-btn" id="tab-disponibilidade" data-tab="disponibilidade" role="tab" aria-selected="false" aria-controls="disponibilidade" tabindex="-1">Disponibilidade</button>
+            <button type="button" class="tab-btn" id="tab-mensagens" data-tab="mensagens" role="tab" aria-selected="false" aria-controls="mensagens" tabindex="-1">Mensagens</button>
+            <button type="button" class="tab-btn" id="tab-perfil" data-tab="perfil" role="tab" aria-selected="false" aria-controls="perfil" tabindex="-1">Perfil</button>
+        </nav>
+
+        <section class="tabs-content">
+            <div id="agenda" class="tab-pane" role="tabpanel" aria-labelledby="tab-agenda">
+                <section class="card-dashboard card-fullwidth" aria-labelledby="agenda-title">
+                    <div class="card-header">
+                        <h2 id="agenda-title">Meus agendamentos</h2>
+                        <button type="button" class="link-ver-mais tab-link" data-tab="disponibilidade">Adicionar horário</button>
+                    </div>
+                    <div class="card-body" aria-live="polite">
+                        <p class="loading-state">Carregando agendamentos...</p>
+                    </div>
+                </section>
+            </div>
+
+            <div id="disponibilidade" class="tab-pane" role="tabpanel" aria-labelledby="tab-disponibilidade">
+                <div class="section-header">
+                    <h2>Disponibilidade</h2>
+                    <p>Cadastre seus horários disponíveis para atendimento.</p>
+                </div>
+
+                <div class="request-list disponibilidade-lista">
+                    <section class="form-card disponibilidade-card" aria-labelledby="disp-title">
+                        <h2 class="form-card-title" id="disp-title">Nova disponibilidade</h2>
+
+                        <form class="form" id="form-disponibilidade" novalidate>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="disp-data">Data</label>
+                                    <input type="date" id="disp-data" name="data_dis" required aria-describedby="disp-data-ajuda">
+                                    <p class="form-hint" id="disp-data-ajuda">Escolha uma data a partir de hoje.</p>
+                                </div>
+
+                                <div class="form-grid col-2">
+                                    <div class="form-group">
+                                        <label for="disp-hora-ini">Hora de início</label>
+                                        <input type="time" id="disp-hora-ini" name="hora_ini_dis" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="disp-hora-fim">Hora de fim</label>
+                                        <input type="time" id="disp-hora-fim" name="hora_fim_dis" required aria-describedby="disp-duracao-ajuda">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="form-hint" id="disp-duracao-ajuda">Cada horário deve durar entre 15 e 60 minutos.</p>
+
+                            <p class="form-alerta form-alerta--erro hidden" id="disp-erro" role="alert"></p>
+                            <p class="form-alerta form-alerta--sucesso hidden" id="disp-sucesso" role="status" aria-live="polite"></p>
+
+                            <button type="submit" class="btn-primary" id="disp-btn-salvar">Salvar disponibilidade</button>
+                        </form>
+                    </section>
+
+                    <section class="form-card disponibilidade-card" aria-labelledby="disp-lista-title">
+                        <h2 class="form-card-title" id="disp-lista-title">Meus horários</h2>
+                        <div id="disp-lista" aria-live="polite">
+                            <p class="form-hint">Carregando horários...</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div id="mensagens" class="tab-pane" role="tabpanel" aria-labelledby="tab-mensagens">
+                <div class="section-header">
+                    <h2>Conversas ativas</h2>
+                    <p>Clique em uma conversa para continuar o atendimento.</p>
+                </div>
+
+                <div class="conversas-lista" aria-live="polite">
+                    <p class="chat-empty">Carregando conversas...</p>
+                </div>
+            </div>
+
+            <div id="perfil" class="tab-pane" role="tabpanel" aria-labelledby="tab-perfil">
+                <div class="section-header">
+                    <h2>Seu perfil</h2>
+                    <p>Verifique suas informações e gerencie sua disponibilidade.</p>
+                </div>
+
+                <div class="profile-grid">
+                    <article class="profile-card">
+                        <h3>Nome</h3>
+                        <p id="profileName">Voluntário</p>
+                    </article>
+                    <article class="profile-card">
+                        <h3>E-mail</h3>
+                        <p id="profileEmail">Não informado</p>
+                    </article>
+                    <article class="profile-card">
+                        <h3>Área de atuação</h3>
+                        <p id="profileArea">Escuta ativa e apoio emocional</p>
+                    </article>
+                    <article class="profile-card">
+                        <h3>Disponibilidade</h3>
+                        <p id="profileDisponibilidade">Gerencie seus horários na aba Disponibilidade.</p>
+                    </article>
+                </div>
+
+                <div class="profile-actions">
+                    <button type="button" class="btn-secondary tab-link" data-tab="disponibilidade">
+                        Gerenciar disponibilidade
+                    </button>
+                    <button type="button" class="btn-logout" data-logout>Sair da conta</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

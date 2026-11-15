@@ -1,0 +1,145 @@
+/*
+ * Página de chat — camada específica sobre base.css + painel.css.
+ * Paleta, tipografia, botões, cards, header e toast vêm do design system.
+ */
+
+/* ---------- Estrutura da página ---------- */
+
+.chat-layout {
+    grid-template-columns: 340px minmax(0, 1fr);
+    align-items: stretch;
+    height: clamp(480px, calc(100dvh - var(--header-height) - 88px), 900px);
+}
+
+.chat-sidebar,
+.chat-window {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* ---------- Sidebar de contatos ---------- */
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: var(--text-lg);
+}
+
+.search-box {
+    padding: var(--space-3) var(--space-4) 0;
+}
+
+.search-box input {
+    min-height: 44px;
+    font-size: var(--text-sm);
+}
+
+.contact-list {
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+    padding: var(--space-2);
+}
+
+.contact {
+    width: 100%;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+}
+
+.contact:focus-visible {
+    outline: none;
+    box-shadow: var(--ring);
+}
+
+.contact-empty {
+    cursor: default;
+}
+
+.contact-empty:hover {
+    background: transparent;
+    border-color: transparent;
+}
+
+/* ---------- Janela de conversa ---------- */
+
+.chat-header-window h2 {
+    margin: 0;
+    font-size: var(--text-lg);
+}
+
+.message-list {
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+}
+
+.message-list .chat-empty {
+    margin: auto;
+}
+
+.message p {
+    margin: 0;
+    color: inherit;
+}
+
+.chat-date-divider {
+    display: flex;
+    justify-content: center;
+    margin: var(--space-2) 0 var(--space-1);
+}
+
+.chat-date-divider span {
+    padding: 0.28rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    color: var(--text-muted);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    box-shadow: var(--shadow-xs);
+}
+
+.chat-input-group {
+    flex: none;
+}
+
+.chat-input-group textarea {
+    min-height: 52px;
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 1024px) {
+    .chat-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .chat-sidebar {
+        max-height: 420px;
+    }
+
+    .chat-window {
+        height: clamp(480px, 72vh, 720px);
+    }
+}
+
+@media (max-width: 720px) {
+    .chat-sidebar {
+        max-height: 360px;
+    }
+
+    .chat-window {
+        height: 72vh;
+        min-height: 420px;
+    }
+}

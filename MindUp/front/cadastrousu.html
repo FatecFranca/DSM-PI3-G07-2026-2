@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário - MIND UP</title>
+    <link rel="stylesheet" href="./style/base.css">
+    <link rel="stylesheet" href="./style/usu.css">
+    <script src="./JS/auth.js" defer></script>
+    <script src="./JS/menuDinamico.js" defer></script>
+    <script src="./JS/ui.js" defer></script>
+    <script src="./JS/routeGuard.js" defer></script>
+    <script src="./JS/script.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="header" role="banner">
+        <nav class="header-nav" aria-label="Principal">
+            <a class="logo" href="index.html" aria-label="MIND UP - Página inicial">
+                <img
+                    src="./imagem/logo.png"
+                    alt=""
+                    class="logo-image"
+                    width="1254"
+                    height="1254"
+                    decoding="async">
+                <span class="site-title">MIND UP</span>
+            </a>
+
+            <ul class="menu-links" id="menu-principal">
+                <!-- Preenchido dinamicamente por menuDinamico.js -->
+            </ul>
+
+            <div class="header-actions"></div>
+
+            <button
+                type="button"
+                class="menu-toggle"
+                data-menu-toggle
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="menu-principal"></button>
+        </nav>
+    </header>
+
+    <main class="conteudo" id="conteudo">
+        <div class="container cadastro-layout">
+            <section class="info-panel" aria-labelledby="titulo-cadastro">
+                <span class="tag">Crie sua conta</span>
+
+                <h1 id="titulo-cadastro">Comece sua jornada de cuidado.</h1>
+
+                <p>Preencha seus dados para acessar profissionais e recursos personalizados.</p>
+
+                <div class="info-cards">
+                    <article class="info-card">
+                        <h3>Apoio seguro</h3>
+                        <p>Conecte-se com profissionais qualificados em um ambiente confiável e acolhedor.</p>
+                    </article>
+                    <article class="info-card">
+                        <h3>Conteúdo dedicado</h3>
+                        <p>Receba recomendações e conteúdos pensados para o seu bem-estar mental.</p>
+                    </article>
+                    <article class="info-card">
+                        <h3>Acesso rápido</h3>
+                        <p>Tenha um cadastro simples e comece seu atendimento com facilidade.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="form-panel" aria-labelledby="titulo-formulario">
+                <div class="form-section">
+                    <div class="form-header">
+                        <h2 id="titulo-formulario">Dados do seu perfil</h2>
+                        <p>Informe seus dados para criar sua conta e entrar no MIND UP.</p>
+                    </div>
+
+                    <form id="cadastroForm" class="form" novalidate>
+                        <div class="form-group">
+                            <label for="nome">Nome completo</label>
+                            <input
+                                id="nome"
+                                name="nome"
+                                type="text"
+                                autocomplete="name"
+                                placeholder="Nome completo"
+                                aria-describedby="nome-error"
+                                required>
+                            <span id="nome-error" class="error-message hidden" aria-live="polite"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                inputmode="email"
+                                autocomplete="email"
+                                placeholder="seu@email.com"
+                                aria-describedby="email-error"
+                                required>
+                            <span id="email-error" class="error-message hidden" aria-live="polite"></span>
+                        </div>
+
+                        <div class="form-grid col-2">
+                            <div class="form-group">
+                                <label for="senha">Senha</label>
+                                <input
+                                    id="senha"
+                                    name="senha"
+                                    type="password"
+                                    autocomplete="new-password"
+                                    minlength="8"
+                                    placeholder="Mínimo 8 caracteres"
+                                    aria-describedby="senha-error"
+                                    required>
+                                <span id="senha-error" class="error-message hidden" aria-live="polite"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmarSenha">Confirmar senha</label>
+                                <input
+                                    id="confirmarSenha"
+                                    name="confirmarSenha"
+                                    type="password"
+                                    autocomplete="new-password"
+                                    placeholder="Repita a senha"
+                                    aria-describedby="confirmarSenha-error"
+                                    required>
+                                <span id="confirmarSenha-error" class="error-message hidden" aria-live="polite"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-grid col-2">
+                            <div class="form-group">
+                                <label for="telefone">Telefone</label>
+                                <input
+                                    id="telefone"
+                                    name="telefone"
+                                    type="tel"
+                                    inputmode="tel"
+                                    autocomplete="tel"
+                                    placeholder="(00) 90000-0000"
+                                    maxlength="15"
+                                    aria-describedby="telefone-error"
+                                    required>
+                                <span id="telefone-error" class="error-message hidden" aria-live="polite"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nascimento">Data de nascimento</label>
+                                <input
+                                    id="nascimento"
+                                    name="nascimento"
+                                    type="date"
+                                    autocomplete="bday"
+                                    aria-describedby="nascimento-error"
+                                    required>
+                                <span id="nascimento-error" class="error-message hidden" aria-live="polite"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sexo">Sexo (opcional)</label>
+                            <div class="select-wrap">
+                                <select id="sexo" name="sexo" autocomplete="sex">
+                                    <option value="">Selecione</option>
+                                    <option value="feminino">Feminino</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="nao-binario">Não binário</option>
+                                    <option value="prefiro-nao-informar">Prefiro não informar</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid col-2">
+                            <div class="form-group">
+                                <label for="cidade">Cidade</label>
+                                <input
+                                    id="cidade"
+                                    name="cidade"
+                                    type="text"
+                                    autocomplete="address-level2"
+                                    placeholder="Sua cidade"
+                                    aria-describedby="cidade-error"
+                                    required>
+                                <span id="cidade-error" class="error-message hidden" aria-live="polite"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <div class="select-wrap">
+                                    <select
+                                        id="estado"
+                                        name="estado"
+                                        autocomplete="address-level1"
+                                        aria-describedby="estado-error"
+                                        required>
+                                        <option value="" disabled selected>Selecione</option>
+                                        <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+                                        <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                                        <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+                                        <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+                                        <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+                                        <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+                                        <option>SP</option><option>SE</option><option>TO</option>
+                                    </select>
+                                </div>
+                                <span id="estado-error" class="error-message hidden" aria-live="polite"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input
+                                    type="checkbox"
+                                    id="termos"
+                                    name="termos"
+                                    aria-describedby="termos-error"
+                                    required>
+                                <label for="termos">
+                                    Li e concordo com os <a href="#" class="link-termos">Termos de Uso</a>
+                                    e a <a href="#" class="link-privacidade">Política de Privacidade</a>.
+                                </label>
+                            </div>
+                            <span id="termos-error" class="error-message hidden" aria-live="polite"></span>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Criar cadastro</button>
+
+                        <p id="mensagem" class="mensagem hidden" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MIND UP</title>
+    <link rel="stylesheet" href="./style/base.css">
+    <link rel="stylesheet" href="./style/login.css">
+    <script src="./JS/auth.js" defer></script>
+    <script src="./JS/menuDinamico.js" defer></script>
+    <script src="./JS/ui.js" defer></script>
+    <script src="./JS/routeGuard.js" defer></script>
+    <script src="./JS/scriptLogin.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="header" role="banner">
+        <nav class="header-nav" aria-label="Principal">
+            <a class="logo" href="index.html" aria-label="MIND UP - Página inicial">
+                <span class="site-title">MIND UP</span>
+            </a>
+
+            <ul class="menu-links" id="menu-principal">
+                <!-- Preenchido dinamicamente por menuDinamico.js -->
+            </ul>
+
+            <button
+                type="button"
+                class="menu-toggle"
+                data-menu-toggle
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="menu-principal"></button>
+        </nav>
+    </header>
+
+    <main class="conteudo" id="conteudo">
+        <div class="container-login">
+            <section class="form-section-login">
+                <span class="tag">Acesso seguro</span>
+                <h1>Bem-vindo de volta!</h1>
+
+                <p>Acesse sua conta para continuar sua jornada de cuidado.</p>
+
+                <form id="loginForm" class="form" novalidate>
+                    <div class="form-group">
+                        <label for="email">Email ou Usuário</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            inputmode="email"
+                            autocomplete="email"
+                            placeholder="seu@email.com"
+                            aria-describedby="email-error"
+                            required>
+                        <span id="email-error" class="error-message hidden" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input
+                            id="senha"
+                            name="senha"
+                            type="password"
+                            autocomplete="current-password"
+                            placeholder="Sua senha"
+                            aria-describedby="senha-error"
+                            required>
+                        <span id="senha-error" class="error-message hidden" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-remember">
+                            <input type="checkbox" id="lembrar" name="lembrar">
+                            <span>Lembrar de mim</span>
+                        </label>
+                        <a href="#" class="link-esqueci">Esqueci a senha</a>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Entrar</button>
+
+                    <p id="mensagem" class="mensagem hidden" role="status" aria-live="polite"></p>
+
+                    <div class="divider">ou</div>
+
+                    <div class="signup-section">
+                        <p>Não tem conta?</p>
+                        <div class="signup-links">
+                            <a href="cadastrousu.html" class="btn-signup">Cadastro de Usuário</a>
+                            <a href="cadastrovol.html" class="btn-signup">Cadastro de Voluntário</a>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <section class="imagem-section-login" aria-labelledby="titulo-acolhimento">
+                <div class="brand-visual">
+                    <div class="imagem-container">
+                        <img
+                            src="./imagem/logo.png"
+                            alt="Logotipo do MindUp"
+                            class="imagem-login"
+                            width="1254"
+                            height="1254"
+                            decoding="async">
+                    </div>
+                </div>
+
+                <div class="info-simple-login">
+                    <h2 id="titulo-acolhimento">Conexão e acolhimento</h2>
+                    <p>Encontre apoio profissional e voluntários dedicados à sua jornada de bem-estar.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

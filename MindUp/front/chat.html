@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B6B4B">
+    <title>Chat - MIND UP</title>
+    <link rel="stylesheet" href="./style/base.css">
+    <link rel="stylesheet" href="./style/painel.css">
+    <link rel="stylesheet" href="./style/chat.css">
+    <script src="./JS/auth.js" defer></script>
+    <script src="./JS/menuDinamico.js" defer></script>
+    <script src="./JS/ui.js" defer></script>
+    <script src="./JS/routeGuard.js" defer></script>
+    <script src="./JS/scriptChat.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="header" role="banner">
+        <nav class="header-nav" aria-label="Principal">
+            <a class="logo" href="index.html" aria-label="MIND UP - Página inicial">
+                <span class="site-title">MIND UP</span>
+            </a>
+
+            <ul class="menu-links" id="menu-principal">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="paginapac.html">Painel</a></li>
+                <li><a href="chat.html" class="active" aria-current="page">Chat</a></li>
+                <li><a href="voluntarios-disponiveis.html">Agendar</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button type="button" id="logout-btn" class="btn-logout" data-logout>Sair</button>
+            </div>
+
+            <button
+                type="button"
+                class="menu-toggle"
+                data-menu-toggle
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="menu-principal"></button>
+        </nav>
+    </header>
+
+    <main class="conteudo-dashboard" id="conteudo">
+        <h1 class="sr-only">Chat de apoio - MIND UP</h1>
+
+        <section class="chat-layout" aria-label="Conversas">
+            <section class="chat-sidebar" aria-labelledby="contatos-titulo">
+                <div class="sidebar-header">
+                    <h2 id="contatos-titulo">Contatos</h2>
+                    <button type="button" id="btn-nova-conversa" class="btn-primary btn-sm">Nova</button>
+                </div>
+
+                <div class="search-box">
+                    <input id="searchContact" type="text" placeholder="Buscar contato..." aria-label="Buscar contato">
+                </div>
+
+                <ul id="contactList" class="contact-list" aria-live="polite">
+                    <li class="contact contact-empty">
+                        <div>
+                            <strong>Carregando...</strong>
+                            <p>Buscando suas conversas.</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="chat-window" aria-labelledby="chatTitle">
+                <div class="chat-header-window">
+                    <div>
+                        <h2 id="chatTitle">Conversa</h2>
+                        <p class="chat-status">Mensagens em tempo real</p>
+                    </div>
+                    <button type="button" id="btn-info" class="btn-secondary btn-sm">Info</button>
+                </div>
+
+                <div id="messageList" class="message-list" aria-live="polite">
+                    <p class="chat-empty">Selecione uma conversa para começar.</p>
+                </div>
+
+                <form id="chatForm" class="chat-input-group">
+                    <textarea id="messageInput" placeholder="Digite sua mensagem..." rows="2" aria-label="Digite sua mensagem"></textarea>
+                    <button type="submit" class="btn-primary">Enviar</button>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+</body>
+</html>

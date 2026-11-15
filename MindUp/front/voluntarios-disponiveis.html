@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B6B4B">
+    <title>Voluntários disponíveis - MIND UP</title>
+    <link rel="stylesheet" href="./style/base.css">
+    <link rel="stylesheet" href="./style/painel.css">
+    <link rel="stylesheet" href="./style/voluntarios-disponiveis.css">
+    <script src="./JS/auth.js" defer></script>
+    <script src="./JS/menuDinamico.js" defer></script>
+    <script src="./JS/ui.js" defer></script>
+    <script src="./JS/routeGuard.js" defer></script>
+    <script src="./JS/voluntariosDisponiveis.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="header" role="banner">
+        <nav class="header-nav" aria-label="Principal">
+            <a class="logo" href="index.html" aria-label="MIND UP - Página inicial">
+                <span class="site-title">MIND UP</span>
+            </a>
+
+            <ul class="menu-links" id="menu-principal">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="paginapac.html">Painel</a></li>
+                <li><a href="chat.html">Chat</a></li>
+                <li><a href="voluntarios-disponiveis.html" class="active" aria-current="page">Agendar</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button type="button" id="logout-btn" class="btn-logout" data-logout>Sair</button>
+            </div>
+
+            <button
+                type="button"
+                class="menu-toggle"
+                data-menu-toggle
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="menu-principal"></button>
+        </nav>
+    </header>
+
+    <main class="conteudo-dashboard" id="conteudo">
+        <section class="secao-bemvindo" aria-labelledby="pagina-titulo">
+            <div class="bemvindo-content">
+                <span class="tag">Agendamento</span>
+                <h1 id="pagina-titulo">Voluntários disponíveis</h1>
+                <p>
+                    Encontre um horário que combine com a sua rotina. Ao escolher uma opção,
+                    o voluntário recebe sua solicitação e confirma o atendimento.
+                </p>
+
+                <div class="bemvindo-acoes">
+                    <a href="paginapac.html" class="btn-secondary">Voltar ao painel</a>
+                    <a href="chat.html" class="btn-opcao">Prefiro conversar agora</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="card-dashboard agenda-panel" aria-labelledby="horarios-titulo">
+            <div class="card-header agenda-panel__header">
+                <div class="agenda-panel__heading">
+                    <span class="tag">Horários abertos</span>
+                    <h2 id="horarios-titulo">Escolha um voluntário</h2>
+                    <p>Filtre por nome, especialidade ou data para encontrar o melhor momento.</p>
+                </div>
+
+                <div class="agenda-total" aria-hidden="true">
+                    <strong id="total-horarios">0</strong>
+                    <span id="total-horarios-label">horários</span>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="agenda-toolbar" role="search" aria-label="Filtrar horários">
+                    <div class="agenda-search search-box">
+                        <label class="sr-only" for="busca-voluntario">Buscar por nome ou especialidade</label>
+                        <svg class="agenda-search__icon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"/>
+                            <path d="m20 20-3.5-3.5"/>
+                        </svg>
+                        <input
+                            type="search"
+                            id="busca-voluntario"
+                            placeholder="Buscar por nome ou especialidade"
+                            autocomplete="off">
+                    </div>
+
+                    <div class="form-group agenda-filter">
+                        <label for="filtro-data">Filtrar por data</label>
+                        <div class="select-wrap">
+                            <select id="filtro-data" disabled>
+                                <option value="">Todas as datas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="button" id="limpar-filtros" class="btn-secondary agenda-toolbar__clear" hidden>
+                        Limpar filtros
+                    </button>
+                </div>
+
+                <p id="resultado-resumo" class="agenda-summary" role="status" aria-live="polite">
+                    Buscando horários disponíveis...
+                </p>
+
+                <div id="voluntarios-grid" class="slots-grid" aria-busy="true"></div>
+            </div>
+        </section>
+    </main>
+
+    <div
+        id="modal-agendamento"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="agendamento-titulo"
+        aria-describedby="agendamento-descricao">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="agendamento-titulo" tabindex="-1" data-modal-title>Solicitar agendamento</h2>
+                <button type="button" class="btn-fechar" data-fechar-modal="modal-agendamento" aria-label="Fechar">
+                    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6 6 18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p id="agendamento-descricao" class="sr-only">
+                    Confira os dados do horário e envie sua solicitação ao voluntário.
+                </p>
+
+                <div class="booking-voluntario">
+                    <span id="modal-avatar" class="avatar" aria-hidden="true">?</span>
+                    <div class="booking-voluntario__info">
+                        <h3 id="modal-voluntario-nome">-</h3>
+                        <p id="modal-voluntario-especialidade">-</p>
+                    </div>
+                </div>
+
+                <dl class="booking-detalhes">
+                    <div class="booking-detalhe">
+                        <dt>Data</dt>
+                        <dd id="modal-data">-</dd>
+                    </div>
+                    <div class="booking-detalhe">
+                        <dt>Horário</dt>
+                        <dd id="modal-horario">-</dd>
+                    </div>
+                </dl>
+
+                <div class="form-group">
+                    <label for="motivo-agendamento">
+                        Motivo da conversa <span class="booking-opcional">(opcional)</span>
+                    </label>
+                    <textarea
+                        id="motivo-agendamento"
+                        rows="4"
+                        maxlength="500"
+                        placeholder="Compartilhe apenas o que se sentir confortável..."></textarea>
+                    <p class="booking-hint">Essa informação ajuda o voluntário a se preparar para a conversa.</p>
+                </div>
+
+                <div id="erro-agendamento" class="form-alerta form-alerta--erro hidden" role="alert" tabindex="-1"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-cancelar" data-fechar-modal="modal-agendamento">Cancelar</button>
+                <button type="button" class="btn-secondary" id="btn-conversar-agendamento">Conversar antes</button>
+                <button type="button" class="btn-primary" id="btn-confirmar-agendamento">Enviar solicitação</button>
+            </div>
+        </div>
+    </div>
+
+    <div
+        id="modal-sucesso"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="sucesso-titulo"
+        aria-describedby="sucesso-descricao">
+        <div class="modal-content modal-content--sucesso">
+            <div class="modal-header">
+                <h2 id="sucesso-titulo" tabindex="-1" data-modal-title>Agendamento solicitado</h2>
+                <button type="button" class="btn-fechar" data-fechar-modal="modal-sucesso" aria-label="Fechar">
+                    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6 6 18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <span class="sucesso-icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m5 12 4 4L19 6"/>
+                    </svg>
+                </span>
+
+                <p id="sucesso-descricao" class="sucesso-texto">
+                    Sua solicitação foi enviada para <strong id="sucesso-voluntario">o voluntário</strong>.
+                </p>
+
+                <div class="sucesso-resumo">
+                    <span id="sucesso-data">-</span>
+                    <span id="sucesso-horario">-</span>
+                </div>
+
+                <p class="booking-hint sucesso-aviso">
+                    O voluntário ainda precisa confirmar o horário. Você pode acompanhar o status em
+                    <strong>Meus agendamentos</strong>.
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" data-fechar-modal="modal-sucesso">Agendar outro horário</button>
+                <a href="paginapac.html" class="btn-primary">Ver meus agendamentos</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

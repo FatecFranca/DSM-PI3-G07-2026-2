@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B6B4B">
+    <title>Meu Painel - MIND UP</title>
+    <link rel="stylesheet" href="./style/base.css">
+    <link rel="stylesheet" href="./style/painel.css">
+    <script src="./JS/auth.js" defer></script>
+    <script src="./JS/menuDinamico.js" defer></script>
+    <script src="./JS/ui.js" defer></script>
+    <script src="./JS/routeGuard.js" defer></script>
+    <script src="./JS/pacDashboard.js" defer></script>
+    <script src="./JS/agendamentosUsuario.js" defer></script>
+    <script src="./JS/scriptDashboard.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="header" role="banner">
+        <nav class="header-nav" aria-label="Principal">
+            <a class="logo" href="index.html" aria-label="MIND UP - Página inicial">
+                <span class="site-title">MIND UP</span>
+            </a>
+
+            <ul class="menu-links" id="menu-principal">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="paginapac.html" class="active" aria-current="page">Painel</a></li>
+                <li><a href="chat.html">Chat</a></li>
+                <li><a href="voluntarios-disponiveis.html">Agendar</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button type="button" id="perfil-btn" class="btn-perfil" aria-label="Abrir meu perfil">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M4 21a8 8 0 0 1 16 0"/>
+                    </svg>
+                </button>
+                <button type="button" id="logout-btn" class="btn-logout" data-logout>Sair</button>
+            </div>
+
+            <button
+                type="button"
+                class="menu-toggle"
+                data-menu-toggle
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="menu-principal"></button>
+        </nav>
+    </header>
+
+    <main class="conteudo-dashboard" id="conteudo">
+        <section class="secao-bemvindo" aria-labelledby="welcome-title">
+            <div class="bemvindo-content">
+                <span class="tag">Painel do usuário</span>
+                <h1 id="welcome-title">Bem-vindo, <span id="nomeUsuario">Usuário</span>!</h1>
+                <p>Como você está se sentindo hoje? Pequenos cuidados fazem diferença no seu bem-estar.</p>
+
+                <div class="bemvindo-acoes">
+                    <button type="button" class="btn-primary tab-link" data-tab="chat">
+                        Falar com um voluntário agora
+                    </button>
+                    <a href="voluntarios-disponiveis.html" class="btn-secondary">
+                        Agendar com voluntário
+                    </a>
+                    <button type="button" class="btn-opcao tab-link" data-tab="consultas">
+                        Ver minhas consultas
+                    </button>
+                    <button type="button" class="btn-opcao tab-link" data-tab="recursos">
+                        Ver recursos
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <nav class="tabs-nav" aria-label="Seções do painel">
+            <button type="button" class="tab-btn active" data-tab="home">Visão geral</button>
+            <button type="button" class="tab-btn" data-tab="consultas">Consultas</button>
+            <button type="button" class="tab-btn" data-tab="chat">Chat</button>
+            <button type="button" class="tab-btn" data-tab="recursos">Recursos</button>
+            <button type="button" class="tab-btn" data-tab="historico">Histórico</button>
+        </nav>
+
+        <section class="tabs-content">
+            <div id="home" class="tab-pane active">
+                <div class="dashboard-grid">
+                    <section class="card-dashboard" aria-labelledby="bemestar-title">
+                        <div class="card-header">
+                            <h2 id="bemestar-title">Seu bem-estar</h2>
+                        </div>
+                        <div class="card-body">
+                            <fieldset class="humor-fieldset">
+                                <legend class="bem-estar-label">Como está seu humor hoje?</legend>
+                                <div class="humor-opcoes">
+                                    <div class="humor-opcao">
+                                        <input type="radio" id="h1" name="humor" value="muito-mal">
+                                        <label class="humor-label" for="h1">
+                                            <span class="bolinha vermelho" aria-hidden="true"></span>
+                                            <span>Muito mal</span>
+                                        </label>
+                                    </div>
+                                    <div class="humor-opcao">
+                                        <input type="radio" id="h2" name="humor" value="mal">
+                                        <label class="humor-label" for="h2">
+                                            <span class="bolinha laranja" aria-hidden="true"></span>
+                                            <span>Mal</span>
+                                        </label>
+                                    </div>
+                                    <div class="humor-opcao">
+                                        <input type="radio" id="h3" name="humor" value="neutro">
+                                        <label class="humor-label" for="h3">
+                                            <span class="bolinha amarelo" aria-hidden="true"></span>
+                                            <span>Neutro</span>
+                                        </label>
+                                    </div>
+                                    <div class="humor-opcao">
+                                        <input type="radio" id="h4" name="humor" value="bem">
+                                        <label class="humor-label" for="h4">
+                                            <span class="bolinha verde" aria-hidden="true"></span>
+                                            <span>Bem</span>
+                                        </label>
+                                    </div>
+                                    <div class="humor-opcao">
+                                        <input type="radio" id="h5" name="humor" value="muito-bem">
+                                        <label class="humor-label" for="h5">
+                                            <span class="bolinha azul" aria-hidden="true"></span>
+                                            <span>Muito bem</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="bem-estar-item">
+                                <div class="slider-header">
+                                    <label class="bem-estar-label" for="ansiedade">Nível de ansiedade hoje</label>
+                                    <output class="valor-slider" for="ansiedade">5/10</output>
+                                </div>
+                                <input
+                                    type="range"
+                                    id="ansiedade"
+                                    min="0"
+                                    max="10"
+                                    value="5"
+                                    step="1"
+                                    class="slider-ansiedade"
+                                    aria-describedby="dicaAnsiedade">
+                                <p class="dica-slider" id="dicaAnsiedade" aria-live="polite">Moderado — tudo bem, você está aqui.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card-dashboard" aria-labelledby="mensagens-title">
+                        <div class="card-header">
+                            <h2 id="mensagens-title">Mensagens recentes</h2>
+                            <a href="#" class="link-ver-mais tab-link" data-tab="chat">Ver todas</a>
+                        </div>
+                        <div class="card-body" aria-live="polite">
+                            <button type="button" class="mensagem-item">
+                                <span class="mensagem-avatar" aria-hidden="true">M</span>
+                                <span class="mensagem-info">
+                                    <span class="mensagem-nome">Maria Voluntária</span>
+                                    <span class="ultima-msg">Oi! Como você está?</span>
+                                    <span class="hora">Há 2 horas</span>
+                                </span>
+                                <span class="msg-badge-novo">Nova</span>
+                            </button>
+
+                            <button type="button" class="mensagem-item">
+                                <span class="mensagem-avatar" aria-hidden="true">S</span>
+                                <span class="mensagem-info">
+                                    <span class="mensagem-nome">Suporte MIND UP</span>
+                                    <span class="ultima-msg">Sua consulta foi confirmada</span>
+                                    <span class="hora">Há 1 dia</span>
+                                </span>
+                            </button>
+
+                            <button type="button" class="btn-novo-chat tab-link" data-tab="chat">
+                                + Iniciar nova conversa
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div id="consultas" class="tab-pane">
+                <section class="card-dashboard card-fullwidth" aria-labelledby="consultas-title">
+                    <div class="card-header">
+                        <h2 id="consultas-title">Meus agendamentos</h2>
+                        <a href="voluntarios-disponiveis.html" class="link-ver-mais">Agendar</a>
+                    </div>
+                    <div class="card-body" aria-live="polite">
+                        <!-- Carregado dinamicamente por agendamentosUsuario.js -->
+                    </div>
+                </section>
+            </div>
+
+            <div id="chat" class="tab-pane">
+                <section class="card-dashboard card-fullwidth chat-container" aria-labelledby="chat-title">
+                    <div class="card-header">
+                        <h2 id="chat-title">Conversar com voluntário</h2>
+                    </div>
+                    <div class="card-body chat-body" aria-live="polite">
+                        <h3 class="chat-section-title">Minhas conversas com voluntários</h3>
+                        <p class="chat-empty">Carregando conversas...</p>
+                    </div>
+                </section>
+            </div>
+
+            <div id="recursos" class="tab-pane">
+                <section class="card-dashboard card-fullwidth" aria-labelledby="recursos-title">
+                    <div class="card-header">
+                        <h2 id="recursos-title">Recursos e dicas</h2>
+                    </div>
+                    <div class="card-body recursos-grid">
+                        <article class="recurso-item">
+                            <span class="recurso-icone" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="6" r="2.5"/>
+                                    <path d="M12 9v4M8 12l4 2 4-2M7 20c0-3 2-4 5-4s5 1 5 4"/>
+                                </svg>
+                            </span>
+                            <h3>Técnicas de meditação</h3>
+                            <p>Pratique a meditação para aumentar a concentração e eliminar pensamentos confusos.</p>
+                        </article>
+
+                        <article class="recurso-item">
+                            <span class="recurso-icone" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 20s-7-4.5-7-9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 7 3.5C19 15.5 12 20 12 20Z"/>
+                                </svg>
+                            </span>
+                            <h3>Exercício físico</h3>
+                            <p>Atividades físicas regulares ajudam a aliviar o estresse e melhorar o humor.</p>
+                        </article>
+
+                        <article class="recurso-item">
+                            <span class="recurso-icone" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+                                </svg>
+                            </span>
+                            <h3>Sono de qualidade</h3>
+                            <p>Uma rotina de sono saudável melhora sua saúde mental e física de forma significativa.</p>
+                        </article>
+
+                        <article class="recurso-item">
+                            <span class="recurso-icone" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z"/>
+                                    <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20"/>
+                                    <path d="M8 7h8M8 11h6"/>
+                                </svg>
+                            </span>
+                            <h3>Leitura e reflexão</h3>
+                            <p>Dedique tempo à leitura e à reflexão sobre seus sentimentos e experiências.</p>
+                        </article>
+
+                        <article class="recurso-item">
+                            <span class="recurso-icone" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 8h11a3 3 0 1 0-3-3"/>
+                                    <path d="M3 12h15a3 3 0 1 1-3 3"/>
+                                    <path d="M3 16h6"/>
+                                </svg>
+                            </span>
+                            <h3>Respiração consciente</h3>
+                            <p>Técnicas de respiração ajudam a controlar a ansiedade em momentos de crise.</p>
+                        </article>
+
+                        <article class="recurso-item">
+                            <span class="recurso-icone" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 20h9"/>
+                                    <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+                                </svg>
+                            </span>
+                            <h3>Diário emocional</h3>
+                            <p>Escrever sobre seus sentimentos pode ajudar a processar emoções difíceis.</p>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+            <div id="historico" class="tab-pane">
+                <section class="card-dashboard card-fullwidth" aria-labelledby="historico-title">
+                    <div class="card-header">
+                        <h2 id="historico-title">Histórico de atendimentos</h2>
+                    </div>
+                    <div class="card-body historico-lista">
+                        <div class="historico-item">
+                            <span class="historico-icone" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="5" width="18" height="16" rx="3"/>
+                                    <path d="M8 3v4M16 3v4M3 10h18"/>
+                                    <path d="M12 14v3l2 1"/>
+                                </svg>
+                            </span>
+                            <div class="historico-info">
+                                <h3>Dra. Ana Silva</h3>
+                                <p class="cargo">Psicóloga</p>
+                                <p class="data">28 de maio, 14h00 – 14h45</p>
+                            </div>
+                            <span class="historico-status completo">Concluído</span>
+                        </div>
+
+                        <div class="historico-item">
+                            <span class="historico-icone" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="5" width="18" height="16" rx="3"/>
+                                    <path d="M8 3v4M16 3v4M3 10h18"/>
+                                    <path d="M12 14v3l2 1"/>
+                                </svg>
+                            </span>
+                            <div class="historico-info">
+                                <h3>Dr. Carlos Mendes</h3>
+                                <p class="cargo">Psiquiatra</p>
+                                <p class="data">21 de maio, 10h00 – 10h50</p>
+                            </div>
+                            <span class="historico-status completo">Concluído</span>
+                        </div>
+
+                        <div class="historico-item">
+                            <span class="historico-icone" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H7l-4 3v-6.5A8.5 8.5 0 1 1 21 11.5Z"/>
+                                    <path d="M8 10h8M8 14h5"/>
+                                </svg>
+                            </span>
+                            <div class="historico-info">
+                                <h3>Maria Voluntária (Chat)</h3>
+                                <p class="cargo">Voluntária</p>
+                                <p class="data">15 de maio, 19h30 – 20h15</p>
+                            </div>
+                            <span class="historico-status completo">Concluído</span>
+                        </div>
+
+                        <div class="historico-item">
+                            <span class="historico-icone" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="5" width="18" height="16" rx="3"/>
+                                    <path d="M8 3v4M16 3v4M3 10h18"/>
+                                    <path d="M12 14v3l2 1"/>
+                                </svg>
+                            </span>
+                            <div class="historico-info">
+                                <h3>Dra. Fernanda Costa</h3>
+                                <p class="cargo">Psicóloga</p>
+                                <p class="data">08 de maio, 16h00 – 16h55</p>
+                            </div>
+                            <span class="historico-status completo">Concluído</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal-perfil" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="perfil-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="perfil-modal-title">Meu perfil</h2>
+                <button type="button" class="btn-fechar" onclick="fecharModal('modal-perfil')" aria-label="Fechar">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="perfil-info">
+                    <div class="perfil-avatar" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="4"/>
+                            <path d="M4 21a8 8 0 0 1 16 0"/>
+                        </svg>
+                    </div>
+                    <div class="perfil-dados">
+                        <h3 id="perfil-nome">João Lima</h3>
+                        <p id="perfil-email">joao@email.com</p>
+                        <span class="perfil-tipo">Usuário</span>
+                        <div class="perfil-acoes">
+                            <button type="button" class="btn-editar">Editar perfil</button>
+                            <button type="button" class="btn-sair" data-logout>Sair</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-msg" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-msg-titulo">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-msg-titulo">Mensagem</h2>
+                <button type="button" class="btn-fechar" onclick="fecharModal('modal-msg')" aria-label="Fechar">✕</button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-msg-conteudo"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancelar" onclick="fecharModal('modal-msg')">Fechar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

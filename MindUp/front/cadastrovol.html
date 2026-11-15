@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Voluntário - MIND UP</title>
+    <link rel="stylesheet" href="./style/base.css">
+    <link rel="stylesheet" href="./style/vol.css">
+    <script src="./JS/auth.js" defer></script>
+    <script src="./JS/menuDinamico.js" defer></script>
+    <script src="./JS/ui.js" defer></script>
+    <script src="./JS/routeGuard.js" defer></script>
+    <script src="./JS/scriptVol.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="header" role="banner">
+        <nav class="header-nav" aria-label="Principal">
+            <a class="logo" href="index.html" aria-label="MIND UP - Página inicial">
+                <img
+                    src="./imagem/logo.png"
+                    alt=""
+                    class="logo-image"
+                    width="1254"
+                    height="1254"
+                    decoding="async">
+                <span class="site-title">MIND UP</span>
+            </a>
+
+            <ul class="menu-links" id="menu-principal">
+                <!-- Preenchido dinamicamente por menuDinamico.js -->
+            </ul>
+
+            <div class="header-actions"></div>
+
+            <button
+                type="button"
+                class="menu-toggle"
+                data-menu-toggle
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="menu-principal"></button>
+        </nav>
+    </header>
+
+    <main class="conteudo" id="conteudo">
+        <div class="cadastro-vol-layout">
+            <aside class="intro-panel" aria-labelledby="titulo-cadastro-vol">
+                <span class="tag">Seja voluntário</span>
+
+                <h1 id="titulo-cadastro-vol">Transforme cuidado em conexão.</h1>
+
+                <p>Cadastre-se para oferecer apoio profissional a quem precisa, com flexibilidade e acolhimento.</p>
+
+                <ul class="benefit-list">
+                    <li>Atendimentos online ou presenciais, conforme sua disponibilidade.</li>
+                    <li>Perfil profissional com CRP e especialidade verificados.</li>
+                    <li>Agenda e pedidos de atendimento em um só lugar.</li>
+                </ul>
+
+                <p class="intro-note">O cadastro está sujeito à verificação dos documentos profissionais antes da aprovação.</p>
+            </aside>
+
+            <form id="cadastroForm" class="form vol-form" novalidate>
+                <div class="form-card">
+                    <h2 class="form-card-title">
+                        <span class="step-badge" aria-hidden="true">1</span>
+                        Dados pessoais
+                    </h2>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nome">Nome completo</label>
+                            <input
+                                id="nome"
+                                name="nome"
+                                type="text"
+                                autocomplete="name"
+                                placeholder="Nome completo"
+                                required>
+                            <span class="error-message hidden"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-grid col-2">
+                        <div class="form-group">
+                            <label for="cpf">CPF</label>
+                            <input
+                                id="cpf"
+                                name="cpf"
+                                type="text"
+                                inputmode="numeric"
+                                placeholder="000.000.000-00"
+                                maxlength="14"
+                                required>
+                            <span class="error-message hidden"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nascimento">Data de nascimento</label>
+                            <input
+                                id="nascimento"
+                                name="nascimento"
+                                type="date"
+                                autocomplete="bday"
+                                required>
+                            <span class="error-message hidden"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-grid col-2">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                inputmode="email"
+                                autocomplete="email"
+                                placeholder="seu@email.com"
+                                required>
+                            <span class="error-message hidden"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input
+                                id="telefone"
+                                name="telefone"
+                                type="tel"
+                                inputmode="tel"
+                                autocomplete="tel"
+                                placeholder="(00) 90000-0000"
+                                maxlength="15"
+                                required>
+                            <span class="error-message hidden"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-grid col-2">
+                        <div class="form-group">
+                            <label for="cidade">Cidade</label>
+                            <input
+                                id="cidade"
+                                name="cidade"
+                                type="text"
+                                autocomplete="address-level2"
+                                placeholder="Sua cidade"
+                                required>
+                            <span class="error-message hidden"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <div class="select-wrap">
+                                <select
+                                    id="estado"
+                                    name="estado"
+                                    autocomplete="address-level1"
+                                    required>
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+                                    <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                                    <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+                                    <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+                                    <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+                                    <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+                                    <option>SP</option><option>SE</option><option>TO</option>
+                                </select>
+                            </div>
+                            <span class="error-message hidden"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-grid col-2">
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input
+                                id="senha"
+                                name="senha"
+                                type="password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                placeholder="Mínimo 8 caracteres"
+                                required>
+                            <span class="error-message hidden"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmarSenha">Confirmar senha</label>
+                            <input
+                                id="confirmarSenha"
+                                name="confirmarSenha"
+                                type="password"
+                                autocomplete="new-password"
+                                placeholder="Repita a senha"
+                                required>
+                            <span class="error-message hidden"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <h2 class="form-card-title">
+                        <span class="step-badge" aria-hidden="true">2</span>
+                        Dados profissionais
+                    </h2>
+
+                    <div class="form-grid col-3">
+                        <div class="form-group">
+                            <label for="crp">Número do CRP</label>
+                            <input
+                                id="crp"
+                                name="crp"
+                                type="text"
+                                placeholder="00/00000"
+                                required>
+                            <span class="error-message hidden"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="crpEstado">Estado do CRP</label>
+                            <div class="select-wrap">
+                                <select id="crpEstado" name="crpEstado" required>
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+                                    <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                                    <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+                                    <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+                                    <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+                                    <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+                                    <option>SP</option><option>SE</option><option>TO</option>
+                                </select>
+                            </div>
+                            <span class="error-message hidden"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="especialidade">Especialidade</label>
+                            <div class="select-wrap">
+                                <select id="especialidade" name="especialidade" required>
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option>Psicologia Clínica</option>
+                                    <option>Neuropsicologia</option>
+                                    <option>Psicologia Organizacional</option>
+                                    <option>Psicologia Escolar</option>
+                                    <option>Psicologia do Esporte</option>
+                                    <option>Psicologia Jurídica</option>
+                                    <option>Psicologia da Saúde</option>
+                                    <option>Outra</option>
+                                </select>
+                            </div>
+                            <span class="error-message hidden"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="formacao">Formação acadêmica</label>
+                            <input
+                                id="formacao"
+                                name="formacao"
+                                type="text"
+                                placeholder="Ex: Psicologia — Universidade de São Paulo (USP)"
+                                required>
+                            <span class="error-message hidden"></span>
+                        </div>
+                    </div>
+
+                    <div class="toggle-group">
+                        <div class="toggle-label">
+                            <span id="online-label">Atendimento online</span>
+                            <small>Marque se realiza consultas por videochamada</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input
+                                type="checkbox"
+                                id="atendimentoOnline"
+                                name="atendimentoOnline"
+                                role="switch"
+                                aria-labelledby="online-label">
+                            <span class="toggle-track" aria-hidden="true"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <h2 class="form-card-title">
+                        <span class="step-badge" aria-hidden="true">3</span>
+                        Documentos
+                    </h2>
+
+                    <div class="upload-grid">
+                        <div class="upload-field">
+                            <span class="upload-label">Carteira do CRP ou documento profissional</span>
+                            <label class="upload-box" id="boxCRP">
+                                <input
+                                    type="file"
+                                    id="uploadCRP"
+                                    name="documentoCRP"
+                                    class="upload-input"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                    aria-describedby="hintCRP">
+                                <span class="upload-icon" aria-hidden="true"></span>
+                                <span class="upload-title">CRP / Doc. profissional</span>
+                                <span class="upload-hint" id="hintCRP">PDF, JPG ou PNG</span>
+                                <span class="upload-btn">Selecionar arquivo</span>
+                            </label>
+                        </div>
+
+                        <div class="upload-field">
+                            <span class="upload-label">Documento de identidade (RG ou CNH)</span>
+                            <label class="upload-box" id="boxRG">
+                                <input
+                                    type="file"
+                                    id="uploadRG"
+                                    name="documentoIdentidade"
+                                    class="upload-input"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                    aria-describedby="hintRG">
+                                <span class="upload-icon" aria-hidden="true"></span>
+                                <span class="upload-title">RG ou CNH</span>
+                                <span class="upload-hint" id="hintRG">PDF, JPG ou PNG</span>
+                                <span class="upload-btn">Selecionar arquivo</span>
+                            </label>
+                        </div>
+
+                        <div class="upload-field">
+                            <span class="upload-label">Foto de perfil profissional</span>
+                            <label class="upload-box" id="boxFoto">
+                                <input
+                                    type="file"
+                                    id="uploadFoto"
+                                    name="fotoPerfil"
+                                    class="upload-input"
+                                    accept=".jpg,.jpeg,.png"
+                                    aria-describedby="hintFoto">
+                                <span class="upload-icon" aria-hidden="true"></span>
+                                <span class="upload-title">Foto de perfil</span>
+                                <span class="upload-hint" id="hintFoto">JPG ou PNG (máx. 5 MB)</span>
+                                <span class="upload-btn">Selecionar arquivo</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acoes form-actions">
+                    <button type="button" class="btn-cancelar" onclick="history.back()">Voltar</button>
+                    <button type="submit" class="btn-submit">Realizar cadastro</button>
+                </div>
+
+                <p id="mensagem" class="mensagem hidden" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

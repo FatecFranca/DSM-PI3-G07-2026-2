@@ -1,0 +1,144 @@
+.cadastro-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+}
+
+.info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    overflow: hidden;
+    border: 1px solid var(--primary-tint);
+    border-radius: var(--radius-xl);
+    background:
+        radial-gradient(circle at 90% 0%, rgba(246, 201, 69, 0.28), transparent 45%),
+        linear-gradient(170deg, var(--primary-soft), var(--surface) 78%);
+    box-shadow: var(--shadow-md);
+}
+
+.info-panel h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+    color: var(--primary-strong);
+}
+
+.info-panel > p {
+    margin: 0;
+    font-size: var(--text-lg);
+}
+
+.info-cards {
+    margin-top: var(--space-2);
+}
+
+.info-card {
+    border-left: 4px solid var(--primary-tint);
+}
+
+.info-card:nth-child(2) {
+    border-left-color: var(--accent-yellow);
+}
+
+.info-card:nth-child(3) {
+    border-left-color: var(--accent-coral);
+}
+
+.info-card h3 {
+    margin-bottom: var(--space-2);
+    color: var(--primary-strong);
+    font-size: var(--text-base);
+}
+
+.info-card p {
+    margin: 0;
+    font-size: var(--text-sm);
+}
+
+.form-panel {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+}
+
+.form-panel .form-header {
+    padding-bottom: var(--space-4);
+    margin-bottom: var(--space-5);
+    border-bottom: 1px solid var(--border);
+}
+
+.form-panel .form-header h2 {
+    color: var(--primary-strong);
+}
+
+.form-panel .form-header p {
+    margin: 0;
+}
+
+.form-panel .form {
+    gap: var(--space-4);
+}
+
+.form-panel .btn-submit {
+    margin-top: var(--space-2);
+}
+
+.form-panel .checkbox-group {
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition), background var(--transition);
+}
+
+.form-panel .checkbox-group:hover {
+    border-color: var(--border-strong);
+    background: var(--primary-soft);
+}
+
+.form-panel .checkbox-group label {
+    cursor: pointer;
+}
+
+.form-panel .checkbox-group a {
+    color: var(--primary-strong);
+    font-weight: 600;
+}
+
+@media (min-width: 1025px) and (min-height: 900px) {
+    .info-panel {
+        position: sticky;
+        top: calc(var(--header-height) + var(--space-6));
+    }
+}
+
+@media (max-width: 1024px) {
+    .cadastro-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .info-panel,
+    .form-panel {
+        padding: 1.35rem;
+        border-radius: var(--radius-lg);
+    }
+
+    .info-panel > p {
+        font-size: var(--text-base);
+    }
+}
+
+@media (max-width: 480px) {
+    .form-panel .checkbox-group {
+        padding: var(--space-3);
+    }
+}
