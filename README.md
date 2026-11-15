@@ -1,2 +1,2 @@
-# template-spring-boot-mongodb
-Template de repositório para trabalhar com Java Spring Boot + MongoDB
+# Video do P.I.
+https://youtu.be/DQ-5HpGCv9s?is=yK6IhM1mX4GFEIFL
